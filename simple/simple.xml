@@ -1,0 +1,68 @@
+<?xml-model href="mitsuba.xsd"?>
+<scene version='2.2.1'>
+  <path value="." />
+
+  <integrator type='direct' />
+
+  <sensor type="perspective">
+    <float name="near_clip" value="1" />
+    <float name="far_clip" value="1000" />
+
+    <transform name="to_world">
+      <lookat target="0,1,0" origin="0,6,8" up="0,1,0" />
+    </transform>
+
+    <film type="hdrfilm">
+      <rfilter type="mitchell" />
+      <integer name="width" value="512" />
+      <integer name="height" value="512" />
+      <string name="pixel_format" value="rgb" />
+    </film>
+
+    <sampler type="ldsampler">
+      <integer name="sample_count" value="32" />
+    </sampler>
+  </sensor>
+
+  <shape type="sphere">
+    <float name="radius" value="1" />
+    <bsdf type="diffuse">
+      <rgb name="reflectance" value="0.50980395, 0.6156863 , 0.864706" />
+    </bsdf>
+    <transform name="to_world">
+      <translate value="0, 1, 0" />
+    </transform>
+  </shape>
+
+
+  <shape type="rectangle">
+    <transform name="to_world">
+      <scale value="20" />
+      <rotate x="1" angle="-90" />
+      <rotate y="1" angle="-30"/>
+    </transform>
+    <bsdf type="diffuse" id="checkboard_material">
+      <texture name="reflectance" type="checkerboard">
+        <rgb name="color0" value="0.1,0.1,0.1" />
+        <rgb name="color1" value="0.8,0.8,0.8" />
+        <transform name="to_uv">
+          <scale x="8" y="8" />
+        </transform>
+      </texture>
+    </bsdf>
+  </shape>
+
+  <emitter type="directional">
+    <vector name="direction" value="1,-1,-1"/>
+    <spectrum name="irradiance" type="d65">
+      <float name="scale" value="0.7"/>
+    </spectrum>
+  </emitter>
+
+  <emitter type="constant">
+    <spectrum name="radiance" type="d65">
+      <float name="scale" value="0.2"/>
+    </spectrum>
+  </emitter>
+
+</scene>

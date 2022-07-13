@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <!-- attribute definitions -->
+  <xs:simpleType name="booleanAttributeType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="true|false" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- type definitions -->
+  <xs:complexType name="integerType">
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="value" type="xs:integer" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="stringType">
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="value" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="booleanType">
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="value" type="booleanAttributeType" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="floatType">
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="value" type="xs:decimal" use="required" />
+  </xs:complexType>
+
+  <!-- only contains a value attribute -->
+  <xs:complexType name="valueType">
+    <xs:attribute name="value" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <!-- only contains a filename attribute -->
+  <xs:complexType name="pathType">
+    <xs:attribute name="filename" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="aliasType">
+    <xs:attribute name="id" type="xs:string" use="required" />
+    <xs:attribute name="as" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="idType">
+      <xs:attribute name="id" type="xs:string" use="required" />
+    </xs:complexType>
+
+
+  <xs:complexType name="spectrumType">
+    <xs:sequence>
+      <xs:element name="float" type="floatType" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="value" type="xs:string" />
+    <xs:attribute name="type" type="xs:string" />
+    <xs:attribute name="filename" type="xs:string" />
+  </xs:complexType>
+
+  <xs:complexType name="scaleType">
+    <xs:attribute name="value" type="xs:string" />
+    <xs:attribute name="x" type="xs:string" />
+    <xs:attribute name="y" type="xs:string" />
+    <xs:attribute name="z" type="xs:string" />
+  </xs:complexType>
+
+  <xs:complexType name="rotateType">
+    <xs:attribute name="value" type="xs:string" />
+    <xs:attribute name="x" type="xs:string" />
+    <xs:attribute name="y" type="xs:string" />
+    <xs:attribute name="z" type="xs:string" />
+    <xs:attribute name="angle" type="xs:decimal" />
+  </xs:complexType>
+
+  <xs:complexType name="lookatType">
+    <xs:attribute name="target" type="xs:string" use="required" />
+    <xs:attribute name="origin" type="xs:string" use="required" />
+    <xs:attribute name="up" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="transformType">
+    <xs:sequence>
+      <xs:choice minOccurs="1" maxOccurs="unbounded">
+        <xs:element name="translate" maxOccurs="unbounded" type="valueType" />
+        <xs:element name="scale" maxOccurs="unbounded" type="scaleType" />
+        <xs:element name="rotate" maxOccurs="unbounded" type="rotateType" />
+        <xs:element name="lookat" maxOccurs="unbounded" type="lookatType" />
+        <xs:element name="matrix" maxOccurs="unbounded" type="valueType" />
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <!-- object element contians any type -->
+  <xs:complexType name="objectType">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="type" type="xs:string" use="required" />
+    <xs:attribute name="id" type="xs:string" />
+  </xs:complexType>
+
+  <!-- object element with name -->
+  <xs:complexType name="namedObjectType">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="type" type="xs:string" use="required" />
+    <xs:attribute name="name" type="xs:string" />
+    <xs:attribute name="id" type="xs:string" />
+  </xs:complexType>
+  
+  <xs:complexType name="sceneType">
+    <xs:sequence>
+      <xs:any minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="version" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <!-- element declaration -->
+  <!-- property element -->
+  <xs:element name="integer" type="integerType" />
+  <xs:element name="string" type="stringType" />
+  <xs:element name="float" type="floatType" />
+  <xs:element name="boolean" type="booleanType" />
+  <xs:element name="vector" type="stringType" />
+  <xs:element name="point" type="stringType" />
+  <xs:element name="rgb" type="stringType" />
+  <xs:element name="spectrum" type="spectrumType" />
+  <xs:element name="transform" type="transformType" />
+
+  <!-- util element -->
+  <xs:element name="ref" type="idType" />
+  <xs:element name="default" type="stringType"/>
+  <xs:element name="include" type="pathType" />
+  <xs:element name="path" type="valueType" />
+  <xs:element name="alias" type="aliasType" />
+
+  <!-- plugin element -->
+  <xs:element name="texture" type="namedObjectType" />
+  <xs:element name="bsdf" type="objectType" />
+  <xs:element name="emitter" type="objectType" />
+  <xs:element name="film" type="objectType" />
+  <xs:element name="integrator" type="objectType" />
+  <xs:element name="rfilter" type="objectType" />
+  <xs:element name="sampler" type="objectType" />
+  <xs:element name="sensor" type="objectType" />
+  <xs:element name="shape" type="objectType" />
+  <xs:element name="medium" type="objectType" />
+  <xs:element name="phase" type="objectType" />
+  <xs:element name="scene" type="sceneType" />
+
+</xs:schema>
