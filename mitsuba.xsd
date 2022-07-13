@@ -44,8 +44,9 @@
   </xs:complexType>
 
   <xs:complexType name="idType">
-      <xs:attribute name="id" type="xs:string" use="required" />
-    </xs:complexType>
+    <xs:attribute name="id" type="xs:string" use="required" />
+    <xs:attribute name="name" type="xs:string" />
+  </xs:complexType>
 
 
   <xs:complexType name="spectrumType">
@@ -110,7 +111,7 @@
     <xs:attribute name="name" type="xs:string" />
     <xs:attribute name="id" type="xs:string" />
   </xs:complexType>
-  
+
   <xs:complexType name="sceneType">
     <xs:sequence>
       <xs:any minOccurs="1" maxOccurs="unbounded" />
@@ -132,7 +133,7 @@
 
   <!-- util element -->
   <xs:element name="ref" type="idType" />
-  <xs:element name="default" type="stringType"/>
+  <xs:element name="default" type="stringType" />
   <xs:element name="include" type="pathType" />
   <xs:element name="path" type="valueType" />
   <xs:element name="alias" type="aliasType" />

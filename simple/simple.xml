@@ -1,4 +1,4 @@
-<?xml-model href="mitsuba.xsd"?>
+<?xml-model href="../mitsuba.xsd"?>
 <scene version='2.2.1'>
   <path value="." />
 
