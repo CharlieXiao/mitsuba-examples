@@ -25,7 +25,7 @@
     </film>
 
     <sampler type="ldsampler">
-      <integer name="sample_count" value="32"/>
+      <integer name="sample_count" value="512"/>
     </sampler>
     <!-- this indicate the medium of world -->
     <medium type="homogeneous">

@@ -6,7 +6,7 @@ some showcase here
 
 ## higokumaru
 
-[model link]:https://sketchfab.com/3d-models/higokumaru-honkai-impact-3rd-0e903387170846f5939adaa0c277b91b
+model link: https://sketchfab.com/3d-models/higokumaru-honkai-impact-3rd-0e903387170846f5939adaa0c277b91b
 
 the texture of the model has light effect (self shadows) on it, so when rendered again this will appear a little dark, especially the white cloth, or maybe there is something wrong with the light settings. 
 
@@ -14,11 +14,17 @@ the texture of the model has light effect (self shadows) on it, so when rendered
 
 ## psyduck
 
-[model link]: https://sketchfab.com/3d-models/psyduck-6bd718edee504a26922000c546a455a9
+model link: https://sketchfab.com/3d-models/psyduck-6bd718edee504a26922000c546a455a9
 
 confused psyduck, just like me when looking at mitsuba2's code
 
 <img src="images/psyduck.png" style="zoom:50%;" />
+
+## dragon
+
+model link: https://benedikt-bitterli.me/resources/
+
+<img src="images/dragon.png" style="zoom:67%;" />
 
 ## xml-validation
 
