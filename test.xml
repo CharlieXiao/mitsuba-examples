@@ -1,0 +1,143 @@
+<?xml-model href="mitsuba.xsd"?>
+<scene version='2.2.1'>
+  <path value="."/>
+
+  <integrator type='path'/>
+
+  <sensor type="perspective">
+    <float name="near_clip" value="1"/>
+    <float name="far_clip" value="1000"/>
+
+    <transform name="to_world">
+      <lookat 
+        target="0.0,3.0,0.0"
+        origin="0.0,3.0,12.0"
+        up    ="0.0,1.0,0.0"
+      />
+    </transform>
+
+    <film type="hdrfilm">
+      <rfilter type="mitchell"/>
+      <integer name="width" value="512"/>
+      <integer name="height" value="512"/>
+      <string name="pixel_format" value="rgb"/>
+      <!-- <string name="component_format" value="float32"/> -->
+    </film>
+
+    <sampler type="ldsampler">
+      <integer name="sample_count" value="1024"/>
+    </sampler>
+    <!-- this indicate the medium of world -->
+    <medium type="homogeneous">
+      <spectrum name="sigma_t" value="0.05"/>
+      <spectrum name="albedo" value="0.95"/>
+      <phase type="isotropic"/>
+    </medium>
+  </sensor>
+
+  <bsdf type="diffuse" id="red-wall">
+    <rgb name="reflectance" value="0.8,0.1,0.2"/>
+  </bsdf>
+
+  <bsdf type="diffuse" id="green-wall">
+    <rgb name="reflectance" value="0.2,0.8,0.1"/>
+  </bsdf>
+
+  <bsdf type="diffuse" id="white-wall">
+    <rgb name="reflectance" value="1,1,1"/>
+  </bsdf>
+
+  <bsdf type="dielectric" id="glass">
+    <!-- rough -->
+    <!-- <float name="alpha" value="0.1"/> -->
+  </bsdf>
+
+  <bsdf type="diffuse" id="back-wall">
+    <texture type="checkerboard" name="reflectance">
+      <rgb name="color0" value="0.1,0.1,0.1"/>
+      <rgb name="color1" value="0.8,0.8,0.8"/>
+      <transform name="to_uv">
+        <scale value="6"/>
+      </transform>
+    </texture>
+  </bsdf>
+
+  <shape type="shapegroup" id="box">
+    <!-- floor -->
+    <shape type="rectangle">
+      <transform name="to_world">
+        <rotate x="1" angle="-90" />
+      </transform>
+      <ref id="white-wall"/>
+    </shape>
+
+    <!-- ceil -->
+    <shape type="rectangle">
+      <transform name="to_world">
+        <rotate x="1" angle="90" />
+        <translate value="0,2,0"/>
+      </transform>
+      <ref id="white-wall"/>
+    </shape>
+
+    <!-- back -->
+    <shape type="rectangle">
+      <transform name="to_world">
+        <translate value="0,1,-1"/>
+      </transform>
+      <ref id="back-wall"/>
+    </shape>
+
+    <!-- right -->
+    <shape type="rectangle">
+      <transform name="to_world">
+        <rotate y="1" angle="-90"/>
+        <translate value="1,1,0"/>
+      </transform>
+      <ref id="green-wall"/>
+    </shape>
+
+    <!-- left -->
+    <shape type="rectangle">
+      <transform name="to_world">
+        <rotate y="1" angle="90"/>
+        <translate value="-1,1,0"/>
+      </transform>
+      <ref id="red-wall"/>
+    </shape>
+
+    <shape type="rectangle">
+      <transform name="to_world">
+        <translate value="0,1,-1"/>
+      </transform>
+      <ref id="back-wall"/>
+    </shape>
+  </shape>
+
+  <shape type="instance">
+    <ref id="box"/>
+    <transform name="to_world">
+      <scale value="3"/>
+    </transform>
+  </shape>
+
+  <shape type="sphere">
+    <ref id="glass"/>
+    <transform name="to_world">
+      <translate value="0,1,0"/>
+    </transform>
+  </shape>
+
+  <shape type="rectangle">
+    <transform name="to_world">
+      <rotate x="1" angle="90" />
+      <translate value="0,5.99,0"/>
+    </transform>
+    <emitter type="area">
+      <spectrum type="d65" name="radiance">
+        <float name="scale" value="10"/>
+      </spectrum>
+    </emitter>
+  </shape>
+
+</scene>

@@ -100,16 +100,7 @@
     </xs:sequence>
     <xs:attribute name="type" type="xs:string" use="required" />
     <xs:attribute name="id" type="xs:string" />
-  </xs:complexType>
-
-  <!-- object element with name -->
-  <xs:complexType name="namedObjectType">
-    <xs:sequence>
-      <xs:any minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-    <xs:attribute name="type" type="xs:string" use="required" />
     <xs:attribute name="name" type="xs:string" />
-    <xs:attribute name="id" type="xs:string" />
   </xs:complexType>
 
   <xs:complexType name="sceneType">
@@ -139,7 +130,7 @@
   <xs:element name="alias" type="aliasType" />
 
   <!-- plugin element -->
-  <xs:element name="texture" type="namedObjectType" />
+  <xs:element name="texture" type="objectType" />
   <xs:element name="bsdf" type="objectType" />
   <xs:element name="emitter" type="objectType" />
   <xs:element name="film" type="objectType" />
