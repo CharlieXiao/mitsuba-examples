@@ -2,36 +2,36 @@
 <scene version="2.2.1">
 	<path value="." />
 
-	<!-- <integrator type="direct">
-		<boolean name="hide_emitters" value="false" />	
-	</integrator> -->
+<!--	<integrator type="direct">-->
+<!--		<boolean name="hide_emitters" value="false" />-->
+<!--	</integrator>-->
 
 	<!-- <integrator type="path">
 		<boolean name="hide_emitters" value="false" />	
 	</integrator> -->
 
-	<!-- <integrator type="ao">
-		<boolean name="hide_emitters" value="false" />	
-		<float name="kd" value="0.7" />
-	</integrator> -->
+<!--	<integrator type="ao">-->
+<!--		<boolean name="hide_emitters" value="false" />-->
+<!--		<float name="kd" value="0.7" />-->
+<!--	</integrator>-->
 
-	<integrator type="aov">
-		<string name="aovs" value="depth:depth,normal:sh_normal,uv:uv" />
+<!--	<integrator type="aov">-->
+<!--		<string name="aovs" value="depth:depth,normal:sh_normal,uv:uv" />-->
 
-		<integrator type="ao" name="ao">
-			<boolean name="hide_emitters" value="false" />
-			<float name="kd" value="0.7" />
-		</integrator>
+<!--		<integrator type="ao" name="ao">-->
+<!--			<boolean name="hide_emitters" value="false" />-->
+<!--			<float name="kd" value="0.7" />-->
+<!--		</integrator>-->
 
-		<integrator type="direct" name="direct">
-			<boolean name="hide_emitters" value="false" />
-		</integrator>
+<!--		<integrator type="direct" name="direct">-->
+<!--			<boolean name="hide_emitters" value="false" />-->
+<!--		</integrator>-->
 
-		<integrator type="path" name="path">
-			<boolean name="hide_emitters" value="false" />
-		</integrator>
+<!--		<integrator type="path" name="path">-->
+<!--			<boolean name="hide_emitters" value="false" />-->
+<!--		</integrator>-->
 
-	</integrator>
+<!--	</integrator>-->
 
 	<sensor type="perspective">
 		<float name="fov" value="35" />
